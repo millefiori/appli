@@ -10,7 +10,15 @@ module Appli
     end
 
     def platform
-      ENV[ "PLATFORM" ].to_s.inquiry
+      unless @platform
+        if ENV[ "PLATFORM" ]
+          @platform = ENV[ "PLATFORM" ].to_s.inquiry
+        else
+          files = Dir.glob( "{mobage,gree,mixi}" )
+          @platform = files.first.to_s.inquiry
+        end
+      end
+      @platform
     end
   end
 end
