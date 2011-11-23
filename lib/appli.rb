@@ -20,5 +20,9 @@ module Appli
       end
       @platform
     end
+
+    def view
+      ENV[ "VIEW" ].to_s.inquiry
+    end
   end
 end
