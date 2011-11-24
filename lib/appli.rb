@@ -22,7 +22,15 @@ module Appli
     end
 
     def view
-      ENV[ "VIEW" ].to_s.inquiry
+      unless @view
+        if ENV[ "VIEW" ]
+          @view = ENV[ "VIEW" ].to_s.inquiry
+        else
+          files = Dir.glob( "{mobile,touch}" )
+          @view = files.first.to_s.inquiry
+        end
+      end
+      @view
     end
   end
 end
